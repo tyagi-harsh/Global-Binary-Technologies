@@ -1,0 +1,725 @@
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+ @import url('[https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=swap](https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=swap)');
+ @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playwrite+AU+SA:wght@100..400&family=Playwrite+AU+TAS:wght@100..400&family=Playwrite+AU+VIC:wght@100..400&family=Playwrite+DK+Uloopet:wght@100..400&family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Tillana:wght@400;500;600;700;800&display=swap');
+
+ body {
+     font-family: 'Inter', sans-serif;
+ }
+
+ h1,
+ h2,
+ h3 {
+     font-family: 'Poppins', sans-serif;
+ }
+
+ #about {
+     text-align: justify;
+ }
+
+ /* Base styles for the carousel container */
+ #slidecarousel-container {
+     touch-action: pan-y;
+     /* Allows vertical page scrolling while swiping horizontally */
+     padding-top: 90px;
+ }
+
+ #slidecarousel {
+     position: relative;
+     height: 560px;
+     /* Fixed height for desktop */
+     overflow: hidden;
+ }
+
+ /* THIS IS THE FIX: This class temporarily disables transitions during page load */
+ #carousel.no-transition .slide {
+     transition: none !important;
+ }
+
+ /* Base styles for each slide */
+ .slide {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     align-items: center;
+     opacity: 0;
+     transform: translateX(100%);
+     transition: transform 0.6s ease, opacity 0.6s ease;
+     pointer-events: none;
+ }
+
+ /* Styling for the currently active slide */
+ .slide.active {
+     opacity: 1;
+     transform: translateX(0);
+     pointer-events: auto;
+     z-index: 10;
+ }
+
+ /* Styling for the slide that is moving out */
+ .slide.exiting {
+     transform: translateX(-100%);
+     opacity: 0;
+ }
+
+ .slide-text {
+     padding: 2.5rem;
+     color: white;
+     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+ }
+
+ .slide-image img {
+     width: 100%;
+     max-width: 24rem;
+     height: auto;
+     aspect-ratio: 1 / 1;
+     object-fit: cover;
+     border-radius: 0.75rem;
+
+     margin: auto;
+ }
+
+ /* --- RESPONSIVE STYLES --- */
+ /* --- RESPONSIVE STYLES FOR MOBILE AND TABLETS --- */
+
+ /*
+ * This single block applies the stacked layout to all screens up to 1024px wide.
+ * This covers both mobile phones and tablets like the iPad Pro in portrait mode.
+ */
+ @media (max-width: 1024px) {
+     #slidecarousel {
+         height: auto;
+         /* Allow height to adjust to content */
+     }
+
+     .slide {
+         position: relative;
+         grid-template-columns: 1fr;
+         /* Single column for stacking */
+         transform: none !important;
+         opacity: 1 !important;
+         pointer-events: auto !important;
+         transition: none !important;
+         display: none;
+         /* Hide non-active slides */
+     }
+
+     .slide.active {
+         display: grid;
+         /* Show the active slide */
+     }
+
+     .slide-text {
+         padding: 2rem 1.5rem 1rem 1.5rem;
+         /* Padding for text */
+         text-align: center;
+         order: 1;
+         /* Text appears first */
+     }
+
+     .slide-image {
+         order: 2;
+         /* Image appears second */
+         padding: 1.5rem;
+     }
+ }
+
+
+
+
+
+
+ /* global binary tech */
+ .para-first {
+     margin-bottom: 0 !important;
+ }
+
+ .para-second {
+     margin-top: 0 !important;
+     margin: auto
+ }
+
+ .gbt-img {
+     width: auto;
+     height: auto;
+     max-width: 200px;
+     max-height: 200px;
+
+ }
+
+ /* 4 div */
+
+ .fc-img {
+     max-width: 200px;
+     max-height: 200px;
+     width: auto;
+     height: auto;
+
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin: auto;
+     padding: auto;
+
+
+
+
+ }
+
+ .fc-hp {
+     justify-content: center;
+     align-items: center;
+     width: fit-content;
+     margin: auto;
+     padding: auto;
+ }
+
+ .fc-heading {
+     padding: 10px;
+     font-size: 1.3rem;
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     font-weight: 500;
+ }
+
+ .fc-para {
+     padding-top: 15px;
+     font-weight: 300;
+     padding: 15px;
+     font-size: 1rem;
+     text-align: center
+ }
+
+ @media (max-width: 760px) {
+     .fc-para {
+         text-align: justify;
+         font-size: 0.8rem;
+         padding: 17px;
+     }
+
+     .fc-heading {
+         font-size: 1.1rem;
+         padding: 5px;
+     }
+ }
+
+ /* 4 div end */
+
+
+
+ /* card css */
+ .card-icons {
+     max-width: 100px;
+     max-height: 100px;
+     width: auto;
+     height: auto;
+     justify-content: center;
+     align-items: center;
+     margin: auto;
+ }
+
+ .card-btn:hover {
+     color: white;
+     background-color: #73c0d2;
+
+ }
+
+ .reveal-on-scroll {
+     opacity: 0;
+     transform: translateY(50px);
+     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+
+
+ }
+
+ .reveal-on-scroll.visible {
+     opacity: 1;
+     transform: translateY(0);
+ }
+
+
+
+
+ /* button css*/
+
+
+ button {
+     position: relative;
+     display: inline-block;
+     cursor: pointer;
+     outline: none;
+     border: 0;
+     vertical-align: middle;
+     text-decoration: none;
+     background: transparent;
+     padding: 10px;
+     font-size: inherit;
+     font-family: inherit;
+     margin: auto;
+     justify-content: center;
+     align-items: center;
+ }
+
+ button.learn-more {
+     width: 12rem;
+     height: auto;
+ }
+
+ button.learn-more .circle {
+     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+     position: relative;
+     display: block;
+     margin: 0;
+     width: 3rem;
+     height: 3rem;
+     background: #282936;
+     border-radius: 1.625rem;
+ }
+
+ button.learn-more .circle .icon {
+     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+     position: absolute;
+     top: 0;
+     bottom: 0;
+     margin: auto;
+     background: #fff;
+ }
+
+ button.learn-more .circle .icon.arrow {
+     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+     left: 0.625rem;
+     width: 1.125rem;
+     height: 0.125rem;
+     background: none;
+ }
+
+ button.learn-more .circle .icon.arrow::before {
+     position: absolute;
+     content: "";
+     top: -0.29rem;
+     right: 0.0625rem;
+     width: 0.625rem;
+     height: 0.625rem;
+     border-top: 0.125rem solid #fff;
+     border-right: 0.125rem solid #fff;
+     transform: rotate(45deg);
+ }
+
+ button.learn-more .button-text {
+     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     padding: 0.75rem 0;
+     margin: 0 0 0 1.85rem;
+     color: #282936;
+     font-weight: 700;
+     line-height: 1.6;
+     text-align: center;
+     text-transform: uppercase;
+ }
+
+ button:hover .circle {
+     width: 100%;
+     transform: scale(1.1);
+     transition: transform 0.3s ease-out;
+ }
+
+ button:hover .circle .icon.arrow {
+     background: #fff;
+     transform: translate(1rem, 0);
+ }
+
+ button:hover .button-text {
+     color: #fff;
+ }
+
+ /*  statical info section */
+ .video-background {
+     position: relative;
+     width: 100%;
+     height: 80vh;
+     /* Full viewport height */
+     overflow: hidden;
+ }
+
+ .video-background video {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     min-width: 100%;
+     min-height: 100%;
+     width: auto;
+     height: auto;
+     transform: translate(-50%, -50%);
+     z-index: 1;
+     object-fit: cover;
+     /* Ensures the video covers the area */
+ }
+
+ .video-background .content {
+     position: relative;
+     z-index: 2;
+     /* Above the video */
+     color: white;
+     text-align: center;
+     padding: 20px;
+ }
+
+ /* Carousel slide animation keyframes */
+ @keyframes slideInOut {
+     0% {
+         opacity: 0;
+         transform: translateX(-100%);
+     }
+
+     10% {
+         opacity: 1;
+         transform: translateX(0);
+     }
+
+     80% {
+         opacity: 1;
+         transform: translateX(0);
+     }
+
+     90% {
+         opacity: 0;
+         transform: translateX(100%);
+     }
+
+     100% {
+         opacity: 0;
+         transform: translateX(100%);
+     }
+ }
+
+ /* Slide animation class */
+ .carousel-animate {
+     animation: slideInOut 4s linear forwards;
+ }
+
+ /* Pause animation */
+ .paused {
+     animation-play-state: paused !important;
+ }
+
+
+
+
+ /* footer start */
+
+
+
+ /* footer start */
+ .block-f {
+     display: inline-block;
+     position: relative;
+     color: black !important;
+     font-family: 'Inter', sans-serif;
+     width: fit-content;
+     font-weight: 400;
+     padding: auto;
+     font-size: 14px;
+ }
+
+ .block-f:hover {
+     transform: scale(1.02);
+     transition: transform 0.3s ease-in;
+ }
+
+ .block-f::after {
+     content: '';
+     position: absolute;
+     width: 95%;
+     transform: scaleX(0);
+     height: 2px;
+     bottom: -2px;
+     left: 0;
+     background-color: #4070F4;
+     transform-origin: bottom right;
+     transition: transform 0.3s ease-out;
+     margin: auto;
+ }
+
+ .block-f:hover::after {
+     transform: scaleX(1);
+     transform-origin: bottom left;
+     transform: scale(1.02);
+ }
+
+
+
+ .f-logo {
+     max-height: 90px;
+     max-width: 90px;
+     width: auto;
+     height: auto;
+     align-items: center;
+     display: flex;
+     justify-content: center;
+     margin: auto;
+
+ }
+
+ .s-letter {
+     border-radius: 0 !important;
+ }
+
+
+
+ ul {
+     list-style: none;
+     padding: 0;
+ }
+
+ .social-icons {
+     display: flex;
+     align-items: left;
+ }
+
+ .social-icons .icon-content {
+     margin: 0 8px;
+     /* Adjusted margin */
+     position: relative;
+ }
+
+ .social-icons .icon-content .tooltip {
+     position: absolute;
+     top: -30px;
+     left: 50%;
+     transform: translateX(-50%);
+     color: #fff;
+     padding: 6px 10px;
+     border-radius: 5px;
+     opacity: 0;
+     visibility: hidden;
+     font-size: 14px;
+     transition: all 0.3s ease;
+     white-space: nowrap;
+ }
+
+ .social-icons .icon-content:hover .tooltip {
+     opacity: 1;
+     visibility: visible;
+     top: -50px;
+ }
+
+ .social-icons .icon-content a {
+     position: relative;
+     overflow: hidden;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 40px;
+     height: 40px;
+     border-radius: 50%;
+     color: #4d4d4d;
+     background-color: #fff;
+     transition: all 0.3s ease-in-out;
+     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+ }
+
+ .social-icons .icon-content a:hover {
+     box-shadow: 3px 2px 25px 0px rgb(0 0 0 / 12%);
+     color: white;
+ }
+
+ .social-icons .icon-content a svg {
+     position: relative;
+     z-index: 1;
+     /* 70% of original 30px is 21px */
+     width: 21px;
+     height: 21px;
+     transition: color 0.3s ease-in-out;
+ }
+
+ .social-icons .icon-content a .filled {
+     position: absolute;
+     top: auto;
+     bottom: 0;
+     left: 0;
+     width: 100%;
+     height: 0;
+     transition: all 0.3s ease-in-out;
+ }
+
+ .social-icons .icon-content a:hover .filled {
+     height: 100%;
+ }
+
+ /* Color theming for each icon */
+ .social-icons .icon-content a[data-social="linkedin"] .filled,
+ .social-icons .icon-content a[data-social="linkedin"]~.tooltip {
+     background-color: #4070F4;
+ }
+
+ .social-icons .icon-content a[data-social="github"] .filled,
+ .social-icons .icon-content a[data-social="github"]~.tooltip {
+     background-color: #4070F4;
+ }
+
+ .social-icons .icon-content a[data-social="instagram"] .filled,
+ .social-icons .icon-content a[data-social="instagram"]~.tooltip {
+     background-color: #4070F4;
+ }
+
+ .social-icons .icon-content a[data-social="youtube"] .filled,
+ .social-icons .icon-content a[data-social="youtube"]~.tooltip {
+     background-color: #4070F4;
+ }
+
+ .gbt {
+     color: #4070F4;
+     text-decoration: none;
+     font-size: 12px;
+
+
+ }
+
+
+ .copyright {
+     padding-left: 10px;
+     padding-right: 10px;
+     padding-bottom: 20px;
+     text-align: center;
+     margin: auto;
+ }
+
+
+ .b-block {
+     display: inline-block;
+     position: relative;
+     color: black !important;
+     justify-content: center;
+     text-align: left;
+     width: fit-content;
+
+     padding: auto;
+     font-size: 14px;
+ }
+
+ .b-block:hover {
+     transform: scale(1.1);
+     transition: transform 0.3s ease-in;
+ }
+
+ .b-block::after {
+     content: '';
+     position: absolute;
+     width: 95%;
+     transform: scaleX(0);
+     height: 2px;
+     bottom: -2px;
+     left: 0;
+     background-color: #4070F4;
+     transform-origin: bottom right;
+     transition: transform 0.3s ease-out;
+     margin: auto;
+ }
+
+ .b-block:hover::after {
+     transform: scaleX(1);
+     transform-origin: bottom left;
+     transform: scale(1.1);
+ }
+
+ .link-gbt-g {
+     font-weight: 600;
+ }
+
+ .link-gbt-g:hover {
+     color: #000000;
+
+     text-decoration: underline;
+     text-decoration-color: #4070F4;
+     text-decoration-thickness: 1.2px;
+ }
+
+ .link-gbt {
+     font-weight: 600;
+     margin-bottom: 23px !important;
+ }
+
+ footer h3{
+    margin-top: 6px;
+ }
+
+ .container>.brand-svg-f {
+     margin: auto;
+     height: 110px;
+     width: 110px;
+     color: #4070F4 !important;
+     margin-top: 0;
+ }
+
+ @media (max-width: 1023.5px) {
+     .container>.brand-svg-f {
+         height: 170px;
+         width: 170px;
+         margin: auto;
+     }
+ }
+
+ .brand-svg-l {
+     margin: auto;
+     height: 170px;
+     width: 170px;
+     color: #4070F4 !important;
+ }
+
+
+ @media (min-width: 1023px) {
+     .p-gbt {
+         font-size: 0.8rem !important;
+         padding-left: 0px;
+         text-align: center;
+     }
+
+     .p-gbt2 {
+         font-size: 0.8rem !important;
+         padding-left: 0px;
+         margin-top: 5px;
+         text-align: center;
+     }
+ }
+
+
+ /*
+ * 1. Animation Keyframes 
+ * This defines the upward reveal motion.
+ */
+ @keyframes reveal-up {
+     from {
+         transform: translateY(100%);
+     }
+
+     to {
+         transform: translateY(0);
+     }
+ }
+
+ /*
+ * 2. Animation Utility Class
+ * This applies the animation to your elements.
+ */
+ .animate-reveal-up {
+     animation: reveal-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+ }
+
+ /*
+ * 3. Staggering Delays
+ * These add different delays to create a sequential effect.
+ */
+ .delay-200 {
+     animation-delay: 0.2s;
+ }
+
+ .delay-400 {
+     animation-delay: 0.4s;
+ }
